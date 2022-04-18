@@ -8,7 +8,8 @@
 import SwiftUI
 
 @main
-struct Location_AppApp: App {
+struct Location_AppApp: App
+{
     
     @StateObject private var locationController = LocationController()
     let decoder = Decoder.self
@@ -17,9 +18,10 @@ struct Location_AppApp: App {
    
 
     
-    var body: some Scene {
-        
-        WindowGroup {
+    var body: some Scene
+    {
+        WindowGroup
+        {
             MainView()
                 .environmentObject(locationController)
                 .environmentObject(favList)

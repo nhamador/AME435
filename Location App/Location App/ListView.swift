@@ -8,14 +8,18 @@
 import SwiftUI
 import MapKit
 
-struct ListView: View {
+struct ListView: View
+{
     @StateObject var favStorage: FavList = FavList()
-    var body: some View {
-        
-        NavigationView {
-            List{
+    var body: some View
+    {
+        NavigationView
+        {
+            List
+            {
                 ForEach($favStorage.favorites){ $favorite in
-                    HStack {
+                    HStack
+                    {
                         NavigationLink(destination: DetailView(item: favorite, region: MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: favorite.latitude, longitude: favorite.longitude), latitudinalMeters: 750,
                                                                                                       longitudinalMeters: 750)))
                         {
@@ -50,6 +54,6 @@ struct ListView: View {
     {
         favStorage.favorites.move(fromOffsets: source, toOffset: destination)
         favStorage.archiveFavs()
-        favStorage.archiveFavs()
+        favStorage.refresh()
     }
 }

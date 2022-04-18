@@ -11,16 +11,10 @@ import MapKit
 struct DetailView: View{
     @EnvironmentObject var locationController: LocationController
     @EnvironmentObject var favList: FavList
-    
-    var item: Favorite //do I use binding??
-    //@Binding var region: MKCoordinateRegion
+    var item: Favorite
     @State var region: MKCoordinateRegion
-   
-  
     var  body: some View
     {
-        
-        
         VStack
         {
             HStack
@@ -33,12 +27,13 @@ struct DetailView: View{
             /*
             HStack
             {
-                Text("\(item.latitude)")
+                Text("Longitude: \(item.longitude)")
                     .font(.system(size: 18))
-                Text("\(item.latitude)")
+                Text("Latitude: \(item.latitude)")
                     .font(.system(size: 18))
             }
              */
+             
             HStack
             {
                 Text(item.description)
@@ -47,11 +42,8 @@ struct DetailView: View{
             .padding(.leading)
             HStack
             {
-                
-                
             }
             .padding(.leading)
-           
             Map(coordinateRegion: $region)
         }
         .onAppear(perform:

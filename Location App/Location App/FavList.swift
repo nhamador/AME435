@@ -9,7 +9,6 @@ import SwiftUI
 
 class FavList: ObservableObject {
     @Published var favorites = [Favorite]()
-    //var itemsCopy = [Favorite]()
     init()
     {
         favorites = FavList.loadPlayerData()
@@ -23,17 +22,23 @@ class FavList: ObservableObject {
     static func unarchivePlayers(url: URL) -> [Favorite]
     {
         var codedList: Data
-        do {
+        do
+        {
             codedList = try Data(contentsOf: url)
-        } catch {
+        }
+        catch
+        {
             print(error)
             return FavList.defaultList()
         }
         let propertyListDecoder = PropertyListDecoder()
-        do {
+        do
+        {
             let list = try propertyListDecoder.decode(Array<Favorite>.self, from: codedList)
             return list
-        } catch {
+        }
+        catch
+        {
             print(error)
         }
         return FavList.defaultList()
@@ -44,33 +49,32 @@ class FavList: ObservableObject {
         let archiveURL = documentsDirectory.appendingPathComponent("Favorites").appendingPathExtension("plist")
         let propertyListEncoder = PropertyListEncoder()
         var codedList: Data
-        do {
+        do
+        {
             codedList = try propertyListEncoder.encode(favorites)
-        } catch {
+        }
+        catch
+        {
             print(error)
             return
         }
-        do {
+        do
+        {
             try codedList.write(to: archiveURL, options: .noFileProtection)
-        } catch {
+        }
+        catch
+        {
             print(error)
         }
     }
     static func defaultList() -> [Favorite]
     {
-        return [Favorite(name: "theZone", longitude: 1, latitude: 1, description: "")]
+        return [Favorite(name: "Arizona State University", longitude: 33.4242, latitude: 111.9281, description: "Located in beautiful sunny Tempe Arizona")]
     }
-    //add, move, and refresh are new functions I created
-    
     func add(item: Favorite)
     {
         favorites.append(item)
     }
-    /*
-    func move(from source: IndexSet, to destination: Int) {
-           favs.move(fromOffsets: source, toOffset: destination)
-       }
-     */
     func refresh()
     {
         favorites = FavList.loadPlayerData()

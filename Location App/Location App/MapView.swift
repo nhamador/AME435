@@ -10,14 +10,11 @@ import MapKit
 
 struct MapView: View {
     @EnvironmentObject var locationController: LocationController
-    //@Published var favoriteList = [Favorite]()
     @StateObject var favList: FavList = FavList()
     
-    @State var locationA: String = "Sun Devil Stadium"
+    @State var locationA: String = "Search here"
     @State var name: String = ""
     @State var description: String = ""
-    
-
     
     var body: some View{
         VStack
@@ -65,14 +62,11 @@ struct MapView: View {
             .padding(.leading)
             Map(coordinateRegion: $locationController.region)
             Button(action: {
-                //add to favorites
                 let favLong = locationController.region.center.longitude;
                 let favLat = locationController.region.center.latitude;
-                let favLocation = Favorite(name: name, longitude: favLong, latitude: favLat, description: "")
+                let favLocation = Favorite(name: name, longitude: favLong, latitude: favLat, description: description)
                 favList.add(item: favLocation)
                 favList.archiveFavs()
-                //favList.items.append(favLocation)
-               // favList.archiveFavs()
             }){
                 HStack{
                     Image(systemName: "favorites")
@@ -97,8 +91,7 @@ struct MapView: View {
 }
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView(locationA: "Sun Devil Stadium")
+        MapView(locationA: "Search Here")
             .environmentObject(LocationController())
-            //.environmentObject(FavList)
     }
 }
