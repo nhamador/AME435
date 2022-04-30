@@ -12,6 +12,7 @@
 		3F34C24A280E04BA00F30ADF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F34C249280E04BA00F30ADF /* Assets.xcassets */; };
 		3F34C24D280E04BA00F30ADF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F34C24C280E04BA00F30ADF /* Preview Assets.xcassets */; };
 		3F34C258280E066300F30ADF /* firstRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F34C257280E066300F30ADF /* firstRoom.swift */; };
+		3F34C25A281DA9DB00F30ADF /* brassTalk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F34C259281DA9DB00F30ADF /* brassTalk.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		3F34C249280E04BA00F30ADF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F34C24C280E04BA00F30ADF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3F34C257280E066300F30ADF /* firstRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = firstRoom.swift; sourceTree = "<group>"; };
+		3F34C259281DA9DB00F30ADF /* brassTalk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = brassTalk.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 		3F34C244280E04B600F30ADF /* roomEscape */ = {
 			isa = PBXGroup;
 			children = (
+				3F34C259281DA9DB00F30ADF /* brassTalk.swift */,
 				3F34C257280E066300F30ADF /* firstRoom.swift */,
 				3F34C245280E04B600F30ADF /* roomEscapeApp.swift */,
 				3F34C247280E04B600F30ADF /* ContentView.swift */,
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F34C258280E066300F30ADF /* firstRoom.swift in Sources */,
+				3F34C25A281DA9DB00F30ADF /* brassTalk.swift in Sources */,
 				3F34C248280E04B600F30ADF /* ContentView.swift in Sources */,
 				3F34C246280E04B600F30ADF /* roomEscapeApp.swift in Sources */,
 			);
