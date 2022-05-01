@@ -23,6 +23,7 @@ import CoreMotion
 class firstRoom: SKScene, SKPhysicsContactDelegate
 {
  
+    let manager = CMMotionManager()
     
  
     var landlord : SKSpriteNode!
@@ -43,6 +44,7 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
     var brassPunchl2: SKTexture!
     var brassPunchr1: SKTexture!
     var brassPunchr2: SKTexture!
+    var empty : SKTexture!
     var brassLeftArray: [SKTexture] = []
     var brassRightArray: [SKTexture] = []
     var brassEquip = 0;
@@ -51,30 +53,28 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
     var didSetup = 0;
     var punchPicker = 0;
     let wait = SKAction.wait(forDuration: 1.2)
-    
-    
-    
     var duckTalk = SKLabelNode(fontNamed: "Papyrus")
-    override func didMove(to view: SKView) {
-        
-            physicsWorld.contactDelegate = self
-            setup()
-        
-            
-        
-        
-       // backgroundColor = SKColor.systemPink
-        
-        
-        
-        
-    }
     
-    func setup() {
-        //set this to gyro later
+    var x = 0.0
+    var y = 0.0
+    override func didMove(to view: SKView)
+    {
+        physicsWorld.contactDelegate = self
+        manager.startGyroUpdates()
+        if let data = self.manager.gyroData {
+             x = data.rotationRate.x
+             y = data.rotationRate.y
+            let z = data.rotationRate.z
+        }
         cameraNode = SKCameraNode()
-        cameraNode.position.x = size.width/2
-        cameraNode.position.y = size.height/2
+        cameraNode.position.x = frame.maxX / x
+        cameraNode.position.y = frame.maxY / y
+        setup()
+    }
+    func setup()
+    {
+        //set this to gyro later
+
         
         
         let blankStart = CGPoint(x: frame.midX, y: frame.midY);
@@ -125,11 +125,11 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
         brassPunchl2 = SKTexture(imageNamed: "brasspunchl2")
         brassPunchr1 = SKTexture(imageNamed: "brasspunchr1")
         brassPunchr2 = SKTexture(imageNamed: "brasspunchr2")
-        brassLeftArray = [brassPunchl1, brassPunchl2,brassPunchl1, brassPunchl2]
-        brassRightArray = [brassPunchr1, brassPunchr2, brassPunchr1, brassPunchr2]
+        empty = SKTexture(imageNamed: "empty")
+        brassLeftArray = [brassPunchl1, brassPunchl2,brassPunchl1, brassPunchl2, empty]
+        brassRightArray = [brassPunchr1, brassPunchr2, brassPunchr1, brassPunchr2, empty]
         leftHook = SKAction.animate(with: brassLeftArray, timePerFrame: 0.3)
         rightHook = SKAction.animate(with: brassRightArray, timePerFrame: 0.3)
-        
         
         lefty = SKSpriteNode(texture: SKTexture(imageNamed: "brassL1"))
         lefty.size = CGSize(width: (frame.maxX/3), height: (frame.maxY / 5))
@@ -137,16 +137,11 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
         lefty.zPosition = 1.5
         addChild(lefty)
         
-        
         righty = SKSpriteNode(texture: SKTexture(imageNamed: "brassR1"))
         righty.size = CGSize(width: (frame.maxX/3), height: (frame.maxY/5))
         righty.name = "righty"
         righty.zPosition = 1.5
         addChild(righty)
-                              
-        
-        
-        
         
         sheets = SKSpriteNode(texture: SKTexture(imageNamed: "sheets"))
         sheets.position = blankStart;
@@ -166,8 +161,6 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
         duckTalk.fontColor = SKColor.systemPink
         duckTalk.zPosition = 1.1;
         addChild(duckTalk)
-        
-        
         /*
         landlord = SKSpriteNode(texture: SKTexture(imageNamed: "landlord1"))
         landlord.position = blankStart;
@@ -251,8 +244,6 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
                     righty.position = (CGPoint(x:0,y:0))
                     lefty.position = point
                     lefty.run(leftHook)
-                    lefty.position = (CGPoint(x: 0, y:0))
-
                     punchPicker = 1;
                     print("lefty")
                  
@@ -260,7 +251,6 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
                 else
                 {
                     lefty.position = (CGPoint(x: 0, y:0))
-                    lefty.removeFromParent()
                     righty.position = point
                     righty.run(rightHook)
                     punchPicker = 0;

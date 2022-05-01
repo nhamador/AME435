@@ -42,6 +42,7 @@ class brassTalk: SKScene, SKPhysicsContactDelegate
         let l2 = SKTexture(imageNamed: "brassL2")
         let l3 = SKTexture(imageNamed: "brassL3")
         
+        
         let r1 = SKTexture(imageNamed: "brassR1")
         let r2 = SKTexture(imageNamed: "brassR2")
         let r3 = SKTexture(imageNamed: "brassR3")
