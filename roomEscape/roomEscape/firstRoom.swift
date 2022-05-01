@@ -12,19 +12,15 @@ import CoreMotion
 /*
  TODO LIST
  /\/\/\/\/\/\//\/\/\/\/\/\/\/\/
- need asset of both brass knuckles together in one pic
- from there need to move to scene with just brass knuckles talking to player
- and then assets for punching
- duck victory screen
+ make bed and door breakable
+ after breaking both of them play landlord scene and get eviction ending
  
- PUSH TO GITHUB AND TEST ON EMMAS MAC
- RECONFIGURE PLACEMENT AND GYRO
  */
 class firstRoom: SKScene, SKPhysicsContactDelegate
 {
  
-    let manager = CMMotionManager()
     
+    let manager = CMMotionManager()
  
     var landlord : SKSpriteNode!
     var doorOne: SKSpriteNode!
@@ -39,7 +35,7 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
     var lefty: SKSpriteNode!
     var righty: SKSpriteNode!
     var cameraNode: SKCameraNode!
-    var motionManager: CMMotionManager!
+    
     var brassPunchl1 : SKTexture!
     var brassPunchl2: SKTexture!
     var brassPunchr1: SKTexture!
@@ -55,47 +51,104 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
     let wait = SKAction.wait(forDuration: 1.2)
     var duckTalk = SKLabelNode(fontNamed: "Papyrus")
     
-    var x = 0.0
-    var y = 0.0
+    var x = 300.0
+    var y = 300.0
+    
     override func didMove(to view: SKView)
     {
         physicsWorld.contactDelegate = self
-        manager.startGyroUpdates()
-        if let data = self.manager.gyroData {
-             x = data.rotationRate.x
-             y = data.rotationRate.y
-            let z = data.rotationRate.z
-        }
-        cameraNode = SKCameraNode()
-        cameraNode.position.x = frame.maxX / x
-        cameraNode.position.y = frame.maxY / y
+        
+   print("outside timer")
+        print(x)
+        print(y)
+        
+    
         setup()
     }
     func setup()
     {
+        manager.startAccelerometerUpdates()
+        manager.accelerometerUpdateInterval = 0.2
+        cameraNode = SKCameraNode()
+        cameraNode.position.x = abs((1000*x))
+        if(cameraNode.position.x > 1000)
+        {
+            cameraNode.position.x = 1000;
+            
+        }
+        if(cameraNode.position.x <= 0)
+        {
+            cameraNode.position.x = 1;
+        }
+        cameraNode.position.y = abs((1000*y))
+        if (cameraNode.position.y < 0)
+        {
+            cameraNode.position.y = 0;
+        }
+        if (cameraNode.position.y > 600)
+        {
+            cameraNode.position.y = 599;
+        }
+        addChild(cameraNode)
+        camera = cameraNode
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [self] _ in
+            
+            if let data = self.manager.accelerometerData {
+             
+                self.x = data.acceleration.x
+                self.y = data.acceleration.y
+                /*
+                print("x:")
+                print(self.x)
+                print("y:")
+                print(self.y)
+                 */
+               
+                if(self.x > 0.33)
+                {
+                    self.x = 0.33;
+                }
+                if(self.x < -0.33)
+                {
+                    self.x = -0.33;
+                }
+                self.cameraNode.position.x = self.x * 2500 + 500
+                print(self.x)
+                
+                
+                    self.y = 0.49
+                    
+                
+                self.cameraNode.position.y = self.y * 1000
+                
+                
+            }
+       
+        }
+ 
         //set this to gyro later
 
         
         
         let blankStart = CGPoint(x: frame.midX, y: frame.midY);
-        let duckStart = CGPoint(x: frame.midX + (0.10)*frame.midX, y: frame.midY + (0.75)*frame.midY)
-        let doorStart = CGPoint(x: frame.midX - (0.45)*frame.midX, y: frame.midY)
+        let duckStart = CGPoint(x: frame.midX - (0.10)*frame.midX, y: frame.midY + (0.70)*frame.midY)
+        let doorStart = CGPoint(x: frame.midX * (-1), y: frame.midY)
         
         let background = SKSpriteNode(imageNamed: "wall")
-        background.size = frame.size
+        background.size = CGSize(width: frame.width * 3, height: frame.height * 1)
         background.position = CGPoint(x: frame.midX, y: frame.midY)
         addChild(background)
         
         prisoner = SKSpriteNode(texture: SKTexture(imageNamed: "duckChained2"))
         prisoner.position = duckStart;
         prisoner.zPosition = 1.0;
-        prisoner.size = CGSize(width: frame.maxX / 5, height: frame.maxY / 4)
+        prisoner.size = CGSize(width: frame.maxX / 3, height: frame.maxY / 3)
         prisoner.name = "ducky"
         addChild(prisoner)
         
         freeman = SKSpriteNode(texture: SKTexture(imageNamed: "duckUnchained"))
         freeman.zPosition = 1.0;
-        freeman.size = CGSize(width: frame.maxX/5, height: frame.maxY/4)
+        freeman.size = CGSize(width: frame.maxX/3, height: frame.maxY/3)
         freeman.name = "empoweredDucky"
         addChild(freeman)
         
@@ -104,14 +157,14 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
         doorOne = SKSpriteNode(texture: SKTexture(imageNamed: "doorOne"))
         doorOne.position = doorStart;
         doorOne.zPosition = 1.0;
-        doorOne.size = CGSize(width: frame.maxX / 5, height: frame.maxY / 3)
+        doorOne.size = CGSize(width: frame.maxX / 3, height: frame.maxY / 2)
         doorOne.name = "doorOne"
         addChild(doorOne)
         
         bed = SKSpriteNode(texture: SKTexture(imageNamed: "bed"))
-        bed.position = blankStart;
+        bed.position = CGPoint(x: frame.midX * 3.25, y: frame.midY);
         bed.zPosition = 1.0;
-        bed.size = CGSize(width: frame.maxX / 5, height: frame.maxY / 5)
+        bed.size = CGSize(width: frame.maxX/2 , height: frame.maxY / 4)
         bed.name = "bed"
         addChild(bed)
         
@@ -144,9 +197,9 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
         addChild(righty)
         
         sheets = SKSpriteNode(texture: SKTexture(imageNamed: "sheets"))
-        sheets.position = blankStart;
+        sheets.position = CGPoint(x: frame.midX * 3.25, y: frame.midY);
         sheets.zPosition = 1.0;
-        sheets.size = CGSize(width: frame.maxX/5 , height: frame.maxY/5)
+        sheets.size = CGSize(width: frame.maxX/2 , height: frame.maxY/4)
         sheets.name = "sheets"
         addChild(sheets)
         
@@ -157,7 +210,7 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
         addChild(bread)
         
         duckTalk.position = CGPoint(x: duckStart.x , y: duckStart.y * 0.8)
-        duckTalk.fontSize = 10.0;
+        duckTalk.fontSize = 30.0;
         duckTalk.fontColor = SKColor.systemPink
         duckTalk.zPosition = 1.1;
         addChild(duckTalk)
@@ -170,18 +223,27 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
         addChild(landlord)
          */
         
-        addChild(cameraNode)
-        camera = cameraNode
-        motionManager = CMMotionManager();
-        motionManager.gyroUpdateInterval = 0.2
-        motionManager.startGyroUpdates(to: OperationQueue.current!){(data, error) in
-            if let myData = data
-            {
-                print(myData.rotationRate)
-            }
-        }
+        
+
         didSetup = 1;
                     
+    }
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else {return }
+        let point = touch.location(in: self)
+        let nodesAtPoint = nodes(at: point)
+        if (nodesAtPoint.count > 0)&&(nodesAtPoint[0] == bread)
+        {
+            bread.position = CGPoint(x: point.x, y: point.y)
+            
+        }
+        if((nodesAtPoint[0] == bread)&&(nodesAtPoint[1] == prisoner))
+        {
+            bread.removeFromParent()
+            duckTalk.text = "THIS IS SOME GOOD BREAD COME MAKE MORE FOR ME"
+            prisoner.removeFromParent()
+            freeman.position = CGPoint(x: frame.midX + (0.10)*frame.midX, y: frame.midY + (0.75)*frame.midY)
+        }
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else {return }
@@ -197,28 +259,28 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
         {
             sheets.removeFromParent() //hopefully deletes
             print("time for bread")
-            bread.position = CGPoint(x: frame.midX, y: frame.midY)
-            brassKnucks.position = CGPoint(x: (frame.midX * (0.80)), y: frame.midY)
+            bread.position = CGPoint(x: frame.midX * 3.35, y: frame.midY);
+            brassKnucks.position = CGPoint(x: frame.midX * 3.10, y: frame.midY);
             
         }
         if (nodesAtPoint.count > 0)&&(nodesAtPoint[0] == bread)
         {
-            bread.position = CGPoint(x: point.x, y: point.y) //test this on iphone might be better on touches moved instead of touches began
-            if(bread.position.x > 287) && (bread.position.x < 383)
+            //test this on iphone might be better on touches moved instead of touches began
+            if(bread.position.x > 287) && (bread.position.x < 383) //this is wrong now
             {
                 if(bread.position.y > 153)&&(bread.position.y < 192)
                 {
-                    bread.removeFromParent()
-                    duckTalk.text = "THIS IS SOME GOOD BREAD COME MAKE MORE FOR ME"
-                    prisoner.removeFromParent()
-                    freeman.position = CGPoint(x: frame.midX + (0.10)*frame.midX, y: frame.midY + (0.75)*frame.midY)
+                    
                 }
             }
             
         }
         if (nodesAtPoint.count > 0)&&(nodesAtPoint[0] == freeman)
         {
-            //Victory!!! If you have time draw duck at bakery victory screen
+            let duckWin = duckEnding()
+            duckWin.size = CGSize(width: 600, height: 200)
+            duckWin.scaleMode = .fill
+            scene?.view?.presentScene(duckWin)
           
         }
         if(nodesAtPoint.count > 0)&&(nodesAtPoint[0] == brassKnucks)

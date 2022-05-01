@@ -13,6 +13,7 @@
 		3F34C24D280E04BA00F30ADF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F34C24C280E04BA00F30ADF /* Preview Assets.xcassets */; };
 		3F34C258280E066300F30ADF /* firstRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F34C257280E066300F30ADF /* firstRoom.swift */; };
 		3F34C25A281DA9DB00F30ADF /* brassTalk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F34C259281DA9DB00F30ADF /* brassTalk.swift */; };
+		B5ED0BAB281F389A0045B463 /* duckEnding.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED0BAA281F389A0045B463 /* duckEnding.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		3F34C24C280E04BA00F30ADF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3F34C257280E066300F30ADF /* firstRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = firstRoom.swift; sourceTree = "<group>"; };
 		3F34C259281DA9DB00F30ADF /* brassTalk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = brassTalk.swift; sourceTree = "<group>"; };
+		B5ED0BAA281F389A0045B463 /* duckEnding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = duckEnding.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 		3F34C244280E04B600F30ADF /* roomEscape */ = {
 			isa = PBXGroup;
 			children = (
+				B5ED0BAA281F389A0045B463 /* duckEnding.swift */,
 				3F34C259281DA9DB00F30ADF /* brassTalk.swift */,
 				3F34C257280E066300F30ADF /* firstRoom.swift */,
 				3F34C245280E04B600F30ADF /* roomEscapeApp.swift */,
@@ -147,6 +150,7 @@
 				3F34C25A281DA9DB00F30ADF /* brassTalk.swift in Sources */,
 				3F34C248280E04B600F30ADF /* ContentView.swift in Sources */,
 				3F34C246280E04B600F30ADF /* roomEscapeApp.swift in Sources */,
+				B5ED0BAB281F389A0045B463 /* duckEnding.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +281,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"roomEscape/Preview Content\"";
+				DEVELOPMENT_TEAM = Q6894T7D57;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -305,6 +310,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"roomEscape/Preview Content\"";
+				DEVELOPMENT_TEAM = Q6894T7D57;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

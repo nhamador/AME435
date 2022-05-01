@@ -11,13 +11,13 @@ import SpriteKit
 struct ContentView: View {
     var scene: SKScene {
         let scene = firstRoom()
-        scene.size = CGSize(width: 600, height: 200)
+        scene.size = CGSize(width: 1000, height: 1000)
         scene.scaleMode = .fill
         return scene
     }
     var body: some View {
         SpriteView(scene: scene)
-            .frame(width: 600, height: 200)
+            .frame(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
     }
 }
 
