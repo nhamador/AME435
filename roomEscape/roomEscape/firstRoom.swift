@@ -174,9 +174,13 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
         if (nodesAtPoint.count > 0)&&(nodesAtPoint[0] == freeman)
         {
             //Victory!!! If you have time draw duck at bakery victory screen
+            let brassConvo = brassTalk()
+            brassConvo.size = CGSize(width: 600, height: 200)
+            brassConvo.scaleMode = .fill
+            scene?.view?.presentScene(brassConvo)
         }
         
-        //nodes at point brass knuckles then change scenes 
+        //nodes at point brass knuckles then change scenes
         
         //if i touch door make locked door sound
         
