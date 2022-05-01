@@ -22,6 +22,9 @@ import CoreMotion
  */
 class firstRoom: SKScene, SKPhysicsContactDelegate
 {
+ 
+    
+ 
     var landlord : SKSpriteNode!
     var doorOne: SKSpriteNode!
     var doorTwo: SKSpriteNode!
@@ -31,9 +34,24 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
     var wall: SKSpriteNode!
     var prisoner: SKSpriteNode!
     var freeman: SKSpriteNode!
+    var brassKnucks: SKSpriteNode!
+    var lefty: SKSpriteNode!
+    var righty: SKSpriteNode!
     var cameraNode: SKCameraNode!
     var motionManager: CMMotionManager!
+    var brassPunchl1 : SKTexture!
+    var brassPunchl2: SKTexture!
+    var brassPunchr1: SKTexture!
+    var brassPunchr2: SKTexture!
+    var brassLeftArray: [SKTexture] = []
+    var brassRightArray: [SKTexture] = []
+    var brassEquip = 0;
+    var leftHook : SKAction!
+    var rightHook : SKAction!
     var didSetup = 0;
+    var punchPicker = 0;
+    let wait = SKAction.wait(forDuration: 1.2)
+    
     
     
     var duckTalk = SKLabelNode(fontNamed: "Papyrus")
@@ -41,6 +59,7 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
         
             physicsWorld.contactDelegate = self
             setup()
+        
             
         
         
@@ -95,6 +114,39 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
         bed.size = CGSize(width: frame.maxX / 5, height: frame.maxY / 5)
         bed.name = "bed"
         addChild(bed)
+        
+        brassKnucks = SKSpriteNode(texture: SKTexture(imageNamed: "brassKnucks"))
+        brassKnucks.zPosition = 1.0;
+        brassKnucks.size = CGSize(width: (frame.maxX / 7), height: (frame.maxY / 7))
+        brassKnucks.name = "brassKnucks."
+        addChild(brassKnucks)
+        
+        brassPunchl1 = SKTexture(imageNamed: "brasspunchl1")
+        brassPunchl2 = SKTexture(imageNamed: "brasspunchl2")
+        brassPunchr1 = SKTexture(imageNamed: "brasspunchr1")
+        brassPunchr2 = SKTexture(imageNamed: "brasspunchr2")
+        brassLeftArray = [brassPunchl1, brassPunchl2,brassPunchl1, brassPunchl2]
+        brassRightArray = [brassPunchr1, brassPunchr2, brassPunchr1, brassPunchr2]
+        leftHook = SKAction.animate(with: brassLeftArray, timePerFrame: 0.3)
+        rightHook = SKAction.animate(with: brassRightArray, timePerFrame: 0.3)
+        
+        
+        lefty = SKSpriteNode(texture: SKTexture(imageNamed: "brassL1"))
+        lefty.size = CGSize(width: (frame.maxX/3), height: (frame.maxY / 5))
+        lefty.name = "lefty"
+        lefty.zPosition = 1.5
+        addChild(lefty)
+        
+        
+        righty = SKSpriteNode(texture: SKTexture(imageNamed: "brassR1"))
+        righty.size = CGSize(width: (frame.maxX/3), height: (frame.maxY/5))
+        righty.name = "righty"
+        righty.zPosition = 1.5
+        addChild(righty)
+                              
+        
+        
+        
         
         sheets = SKSpriteNode(texture: SKTexture(imageNamed: "sheets"))
         sheets.position = blankStart;
@@ -153,7 +205,7 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
             sheets.removeFromParent() //hopefully deletes
             print("time for bread")
             bread.position = CGPoint(x: frame.midX, y: frame.midY)
-            //brasskunckles.position blah blah
+            brassKnucks.position = CGPoint(x: (frame.midX * (0.80)), y: frame.midY)
             
         }
         if (nodesAtPoint.count > 0)&&(nodesAtPoint[0] == bread)
@@ -174,10 +226,49 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
         if (nodesAtPoint.count > 0)&&(nodesAtPoint[0] == freeman)
         {
             //Victory!!! If you have time draw duck at bakery victory screen
+          
+        }
+        if(nodesAtPoint.count > 0)&&(nodesAtPoint[0] == brassKnucks)
+        {
+            brassKnucks.removeFromParent()// they should be on hands now
+            brassEquip = 1;
             let brassConvo = brassTalk()
             brassConvo.size = CGSize(width: 600, height: 200)
             brassConvo.scaleMode = .fill
-            scene?.view?.presentScene(brassConvo)
+            //removed for now cuz im testing other stuff
+           // scene?.view?.presentScene(brassConvo)
+        }
+        if(nodesAtPoint.count > 0)&&(nodesAtPoint[0] == doorOne)
+        {
+            
+            
+            //play sound cuz its locked
+            if(brassEquip == 1)
+            {
+                if(punchPicker == 0)
+                {
+                   
+                    righty.position = (CGPoint(x:0,y:0))
+                    lefty.position = point
+                    lefty.run(leftHook)
+                    lefty.position = (CGPoint(x: 0, y:0))
+
+                    punchPicker = 1;
+                    print("lefty")
+                 
+                }
+                else
+                {
+                    lefty.position = (CGPoint(x: 0, y:0))
+                    lefty.removeFromParent()
+                    righty.position = point
+                    righty.run(rightHook)
+                    punchPicker = 0;
+                 
+                    print("rigfty")
+                }
+                
+            }
         }
         
         //nodes at point brass knuckles then change scenes

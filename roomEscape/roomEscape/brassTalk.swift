@@ -14,10 +14,30 @@ class brassTalk: SKScene, SKPhysicsContactDelegate
     var righty: SKSpriteNode!
     var leftSeq: SKAction!
     var rightSeq: SKAction!
+    var leftTalk = SKLabelNode(fontNamed: "Papyrus")
+    var rightTalk = SKLabelNode(fontNamed: "Papyrus")
+    var leftTalky : SKAction!
+    var rightTalky : SKAction!
+
+
     
   
 
     override func didMove(to view: SKView) {
+        
+        leftTalk.position = CGPoint(x: frame.midX * (0.50) , y: frame.midY * (1.5));
+        leftTalk.fontSize = 10.0;
+        leftTalk.fontColor = SKColor.systemPink
+        leftTalk.zPosition = 1.1;
+        addChild(leftTalk)
+        
+        
+        rightTalk.position = CGPoint(x: frame.midX * (1.50) , y: frame.midY * (1.5))
+        rightTalk.fontSize = 10.0;
+        rightTalk.fontColor = SKColor.systemPink
+        rightTalk.zPosition = 1.1;
+        addChild(rightTalk)
+        
         let l1 = SKTexture(imageNamed: "brassL1")
         let l2 = SKTexture(imageNamed: "brassL2")
         let l3 = SKTexture(imageNamed: "brassL3")
@@ -50,10 +70,10 @@ class brassTalk: SKScene, SKPhysicsContactDelegate
         addChild(righty)
         
 
-        let leftTalk = SKAction.animate(with: leftArray, timePerFrame: 0.1)
-        let rightTalk = SKAction.animate(with: rightArray,timePerFrame: 0.1)
-        let repeatLeft = SKAction.repeatForever(leftTalk)
-        let repeatRight = SKAction.repeatForever(rightTalk)
+        leftTalky = SKAction.animate(with: leftArray, timePerFrame: 0.1)
+        rightTalky = SKAction.animate(with: rightArray,timePerFrame: 0.1)
+        let repeatLeft = SKAction.repeatForever(leftTalky)
+        let repeatRight = SKAction.repeatForever(rightTalky)
         leftSeq = SKAction.sequence([repeatLeft])
         rightSeq = SKAction.sequence([repeatRight])
      
@@ -69,11 +89,19 @@ class brassTalk: SKScene, SKPhysicsContactDelegate
         let nodesAtPoint = nodes(at: point)
         if (nodesAtPoint.count > 0)&&(nodesAtPoint[0] == lefty)
         {
-            lefty.run(leftSeq)
+            leftTalk.text = "why wont you punch your way out of here"
+            lefty.run(leftTalky)
         }
         if(nodesAtPoint.count > 0)&&(nodesAtPoint[0] == righty)
         {
-            righty.run(rightSeq)
+            rightTalk.text = "dont listen to lefty, trust the duck"
+            righty.run(rightTalky)
+            
+            //leaving this here rn for testing moving later after I fill out dialouge
+            let firstRoom = firstRoom()
+            firstRoom.size = CGSize(width: 600, height: 200)
+            firstRoom.scaleMode = .fill
+            scene?.view?.presentScene(firstRoom)
             
         }
     }
