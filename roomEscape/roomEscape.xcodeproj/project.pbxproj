@@ -9,24 +9,34 @@
 /* Begin PBXBuildFile section */
 		3F34C246280E04B600F30ADF /* roomEscapeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F34C245280E04B600F30ADF /* roomEscapeApp.swift */; };
 		3F34C248280E04B600F30ADF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F34C247280E04B600F30ADF /* ContentView.swift */; };
-		3F34C24A280E04BA00F30ADF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F34C249280E04BA00F30ADF /* Assets.xcassets */; };
 		3F34C24D280E04BA00F30ADF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F34C24C280E04BA00F30ADF /* Preview Assets.xcassets */; };
 		3F34C258280E066300F30ADF /* firstRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F34C257280E066300F30ADF /* firstRoom.swift */; };
 		3F34C25A281DA9DB00F30ADF /* brassTalk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F34C259281DA9DB00F30ADF /* brassTalk.swift */; };
+		B57E73E8281F92220067B99F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B57E73E7281F92220067B99F /* Assets.xcassets */; };
+		B57E73EA281F92D30067B99F /* bread.wav in Resources */ = {isa = PBXBuildFile; fileRef = B57E73E9281F92D30067B99F /* bread.wav */; };
+		B57E73EC281F92E20067B99F /* homeless.wav in Resources */ = {isa = PBXBuildFile; fileRef = B57E73EB281F92E10067B99F /* homeless.wav */; };
+		B57E73EE281F92EA0067B99F /* nolandlord.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B57E73ED281F92EA0067B99F /* nolandlord.mp3 */; };
 		B5ED0BAB281F389A0045B463 /* duckEnding.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED0BAA281F389A0045B463 /* duckEnding.swift */; };
 		B5ED0BAD281F5DB50045B463 /* evictionEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED0BAC281F5DB50045B463 /* evictionEnd.swift */; };
+		B5ED0BAF281F7DED0045B463 /* homeless.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED0BAE281F7DED0045B463 /* homeless.swift */; };
+		B5ED0BB3281F8EAC0045B463 /* cat.wav in Resources */ = {isa = PBXBuildFile; fileRef = B5ED0BB2281F8EAC0045B463 /* cat.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3F34C242280E04B600F30ADF /* roomEscape.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = roomEscape.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F34C245280E04B600F30ADF /* roomEscapeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = roomEscapeApp.swift; sourceTree = "<group>"; };
 		3F34C247280E04B600F30ADF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		3F34C249280E04BA00F30ADF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F34C24C280E04BA00F30ADF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3F34C257280E066300F30ADF /* firstRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = firstRoom.swift; sourceTree = "<group>"; };
 		3F34C259281DA9DB00F30ADF /* brassTalk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = brassTalk.swift; sourceTree = "<group>"; };
+		B57E73E7281F92220067B99F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B57E73E9281F92D30067B99F /* bread.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bread.wav; path = assets/bread.wav; sourceTree = SOURCE_ROOT; };
+		B57E73EB281F92E10067B99F /* homeless.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = homeless.wav; path = assets/homeless.wav; sourceTree = SOURCE_ROOT; };
+		B57E73ED281F92EA0067B99F /* nolandlord.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = nolandlord.mp3; path = assets/nolandlord.mp3; sourceTree = SOURCE_ROOT; };
 		B5ED0BAA281F389A0045B463 /* duckEnding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = duckEnding.swift; sourceTree = "<group>"; };
 		B5ED0BAC281F5DB50045B463 /* evictionEnd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = evictionEnd.swift; sourceTree = "<group>"; };
+		B5ED0BAE281F7DED0045B463 /* homeless.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeless.swift; sourceTree = "<group>"; };
+		B5ED0BB2281F8EAC0045B463 /* cat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = cat.wav; path = roomEscape/cat.wav; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,13 +69,18 @@
 		3F34C244280E04B600F30ADF /* roomEscape */ = {
 			isa = PBXGroup;
 			children = (
+				B57E73E9281F92D30067B99F /* bread.wav */,
+				B5ED0BB2281F8EAC0045B463 /* cat.wav */,
+				B57E73EB281F92E10067B99F /* homeless.wav */,
+				B57E73ED281F92EA0067B99F /* nolandlord.mp3 */,
+				B57E73E7281F92220067B99F /* Assets.xcassets */,
+				B5ED0BAE281F7DED0045B463 /* homeless.swift */,
 				B5ED0BAC281F5DB50045B463 /* evictionEnd.swift */,
 				B5ED0BAA281F389A0045B463 /* duckEnding.swift */,
 				3F34C259281DA9DB00F30ADF /* brassTalk.swift */,
 				3F34C257280E066300F30ADF /* firstRoom.swift */,
 				3F34C245280E04B600F30ADF /* roomEscapeApp.swift */,
 				3F34C247280E04B600F30ADF /* ContentView.swift */,
-				3F34C249280E04BA00F30ADF /* Assets.xcassets */,
 				3F34C24B280E04BA00F30ADF /* Preview Content */,
 			);
 			path = roomEscape;
@@ -137,8 +152,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5ED0BB3281F8EAC0045B463 /* cat.wav in Resources */,
+				B57E73E8281F92220067B99F /* Assets.xcassets in Resources */,
 				3F34C24D280E04BA00F30ADF /* Preview Assets.xcassets in Resources */,
-				3F34C24A280E04BA00F30ADF /* Assets.xcassets in Resources */,
+				B57E73EA281F92D30067B99F /* bread.wav in Resources */,
+				B57E73EC281F92E20067B99F /* homeless.wav in Resources */,
+				B57E73EE281F92EA0067B99F /* nolandlord.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +170,7 @@
 			files = (
 				3F34C258280E066300F30ADF /* firstRoom.swift in Sources */,
 				3F34C25A281DA9DB00F30ADF /* brassTalk.swift in Sources */,
+				B5ED0BAF281F7DED0045B463 /* homeless.swift in Sources */,
 				3F34C248280E04B600F30ADF /* ContentView.swift in Sources */,
 				3F34C246280E04B600F30ADF /* roomEscapeApp.swift in Sources */,
 				B5ED0BAD281F5DB50045B463 /* evictionEnd.swift in Sources */,

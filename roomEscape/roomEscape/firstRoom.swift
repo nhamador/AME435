@@ -18,7 +18,8 @@ import CoreMotion
  */
 class firstRoom: SKScene, SKPhysicsContactDelegate
 {
- 
+    var sound = SKAction.playSoundFileNamed("cat", waitForCompletion: true)
+
     
     let manager = CMMotionManager()
  
@@ -27,7 +28,7 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
     var doorTwo: SKSpriteNode!
     var bed : SKSpriteNode!
     var sheets: SKSpriteNode!
-    var bread: SKSpriteNode!
+    var bread2: SKSpriteNode!
     var wall: SKSpriteNode!
     var prisoner: SKSpriteNode!
     var freeman: SKSpriteNode!
@@ -65,6 +66,7 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
     
     override func didMove(to view: SKView)
     {
+        playSound(sound: sound)
         physicsWorld.contactDelegate = self
         
    print("outside timer")
@@ -136,7 +138,6 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
                     let landEnd = evictionEnd()
                     landEnd.size = CGSize(width: 400, height: 600)
                     landEnd.scaleMode = .fill
-                    //removed for now cuz im testing other stuff
                     scene?.view?.presentScene(landEnd)
                     
                 }
@@ -167,6 +168,7 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
         addChild(prisoner)
         
         freeman = SKSpriteNode(texture: SKTexture(imageNamed: "duckUnchained"))
+        freeman.position = CGPoint(x: -10000, y: -10000)
         freeman.zPosition = 1.0;
         freeman.size = CGSize(width: frame.maxX/3, height: frame.maxY/3)
         freeman.name = "empoweredDucky"
@@ -214,12 +216,14 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
         lefty = SKSpriteNode(texture: SKTexture(imageNamed: "brassL1"))
         lefty.size = CGSize(width: (frame.maxX/3), height: (frame.maxY / 5))
         lefty.name = "lefty"
+        lefty.position = CGPoint(x: -10000, y: -10000)
         lefty.zPosition = 1.5
         addChild(lefty)
         
         righty = SKSpriteNode(texture: SKTexture(imageNamed: "brassR1"))
         righty.size = CGSize(width: (frame.maxX/3), height: (frame.maxY/5))
         righty.name = "righty"
+        righty.position = CGPoint(x: -10000, y: -10000)
         righty.zPosition = 1.5
         addChild(righty)
         
@@ -230,15 +234,15 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
         sheets.name = "sheets"
         addChild(sheets)
         
-        bread = SKSpriteNode(texture: SKTexture(imageNamed: "bread"))
-        bread.zPosition = 1.2;
-        bread.size = CGSize(width: frame.maxX/6, height: frame.maxY/6)
-        bread.name = "bread"
-        addChild(bread)
+        bread2 = SKSpriteNode(texture: SKTexture(imageNamed: "bread2"))
+        bread2.zPosition = 1.2;
+        bread2.size = CGSize(width: frame.maxX/6, height: frame.maxY/6)
+        bread2.name = "bread2"
+        addChild(bread2)
         
         duckTalk.position = CGPoint(x: duckStart.x , y: duckStart.y * 0.8)
         duckTalk.fontSize = 30.0;
-        duckTalk.fontColor = SKColor.systemPink
+        duckTalk.fontColor = SKColor.white
         duckTalk.zPosition = 1.1;
         addChild(duckTalk)
         /*
@@ -259,14 +263,14 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
         guard let touch = touches.first else {return }
         let point = touch.location(in: self)
         let nodesAtPoint = nodes(at: point)
-        if (nodesAtPoint.count > 0)&&(nodesAtPoint[0] == bread)
+        if (nodesAtPoint.count > 0)&&(nodesAtPoint[0] == bread2)
         {
-            bread.position = CGPoint(x: point.x, y: point.y)
+            bread2.position = CGPoint(x: point.x, y: point.y)
             
         }
-        if((nodesAtPoint[0] == bread)&&(nodesAtPoint[1] == prisoner))
+        if((nodesAtPoint[0] == bread2)&&(nodesAtPoint[1] == prisoner))
         {
-            bread.removeFromParent()
+            bread2.removeFromParent()
             duckTalk.text = "THIS IS SOME GOOD BREAD COME MAKE MORE FOR ME"
             prisoner.removeFromParent()
             freeman.position = CGPoint(x: frame.midX + (0.10)*frame.midX, y: frame.midY + (0.75)*frame.midY)
@@ -285,17 +289,17 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
         if (nodesAtPoint.count > 0)&&(nodesAtPoint[0] == sheets)
         {
             sheets.removeFromParent() //hopefully deletes
-            print("time for bread")
-            bread.position = CGPoint(x: frame.midX * 3.35, y: frame.midY);
+            print("time for bread2")
+            bread2.position = CGPoint(x: frame.midX * 3.35, y: frame.midY);
             brassKnucks.position = CGPoint(x: frame.midX * 3.10, y: frame.midY);
             
         }
-        if (nodesAtPoint.count > 0)&&(nodesAtPoint[0] == bread)
+        if (nodesAtPoint.count > 0)&&(nodesAtPoint[0] == bread2)
         {
             //test this on iphone might be better on touches moved instead of touches began
-            if(bread.position.x > 287) && (bread.position.x < 383) //this is wrong now
+            if(bread2.position.x > 287) && (bread2.position.x < 383) //this is wrong now
             {
-                if(bread.position.y > 153)&&(bread.position.y < 192)
+                if(bread2.position.y > 153)&&(bread2.position.y < 192)
                 {
                     
                 }
@@ -327,7 +331,7 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
                 if(punchPicker == 0)
                 {
                     
-                    righty.position = (CGPoint(x:0,y:0))
+                    righty.position = (CGPoint(x:-1000,y:-1000))
                     lefty.position = point
                     lefty.run(leftHook)
                     punchPicker = 1;
@@ -338,11 +342,11 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
                 }
                 else
                 {
-                    lefty.position = (CGPoint(x: 0, y:0))
+                    lefty.position = (CGPoint(x: -1000, y:-1000))
                     righty.position = point
                     righty.run(rightHook)
                     punchPicker = 0;
-                 
+
                     print("rigfty")
                     bedPunchCounter = bedPunchCounter + 1;
                 }
@@ -380,7 +384,7 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
                 if(punchPicker == 0)
                 {
                     
-                    righty.position = (CGPoint(x:0,y:0))
+                    righty.position = (CGPoint(x:-1000,y:-1000))
                     lefty.position = point
                     lefty.run(leftHook)
                     punchPicker = 1;
@@ -391,7 +395,7 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
                 }
                 else
                 {
-                    lefty.position = (CGPoint(x: 0, y:0))
+                    lefty.position = (CGPoint(x: -1000, y:-1000))
                     righty.position = point
                     righty.run(rightHook)
                     punchPicker = 0;
@@ -426,7 +430,10 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
         
         
     }
-  
+    func playSound(sound: SKAction)
+    {
+        run(sound)
+    }
     
     
 }

@@ -27,7 +27,7 @@ class brassTalk: SKScene, SKPhysicsContactDelegate
         
         leftTalk.position = CGPoint(x: frame.midX * (0.50) , y: frame.midY * (1.5));
         leftTalk.fontSize = 10.0;
-        leftTalk.fontColor = SKColor.systemPink
+        leftTalk.fontColor = SKColor.white
         leftTalk.zPosition = 1.1;
         addChild(leftTalk)
         
