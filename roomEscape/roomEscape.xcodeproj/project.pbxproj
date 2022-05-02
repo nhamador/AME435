@@ -14,6 +14,7 @@
 		3F34C258280E066300F30ADF /* firstRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F34C257280E066300F30ADF /* firstRoom.swift */; };
 		3F34C25A281DA9DB00F30ADF /* brassTalk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F34C259281DA9DB00F30ADF /* brassTalk.swift */; };
 		B5ED0BAB281F389A0045B463 /* duckEnding.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED0BAA281F389A0045B463 /* duckEnding.swift */; };
+		B5ED0BAD281F5DB50045B463 /* evictionEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED0BAC281F5DB50045B463 /* evictionEnd.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		3F34C257280E066300F30ADF /* firstRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = firstRoom.swift; sourceTree = "<group>"; };
 		3F34C259281DA9DB00F30ADF /* brassTalk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = brassTalk.swift; sourceTree = "<group>"; };
 		B5ED0BAA281F389A0045B463 /* duckEnding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = duckEnding.swift; sourceTree = "<group>"; };
+		B5ED0BAC281F5DB50045B463 /* evictionEnd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = evictionEnd.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 		3F34C244280E04B600F30ADF /* roomEscape */ = {
 			isa = PBXGroup;
 			children = (
+				B5ED0BAC281F5DB50045B463 /* evictionEnd.swift */,
 				B5ED0BAA281F389A0045B463 /* duckEnding.swift */,
 				3F34C259281DA9DB00F30ADF /* brassTalk.swift */,
 				3F34C257280E066300F30ADF /* firstRoom.swift */,
@@ -150,6 +153,7 @@
 				3F34C25A281DA9DB00F30ADF /* brassTalk.swift in Sources */,
 				3F34C248280E04B600F30ADF /* ContentView.swift in Sources */,
 				3F34C246280E04B600F30ADF /* roomEscapeApp.swift in Sources */,
+				B5ED0BAD281F5DB50045B463 /* evictionEnd.swift in Sources */,
 				B5ED0BAB281F389A0045B463 /* duckEnding.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

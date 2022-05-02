@@ -70,6 +70,7 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
    print("outside timer")
         print(x)
         print(y)
+     
         
     
         setup()
@@ -129,6 +130,16 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
                     
                 
                 self.cameraNode.position.y = self.y * 1000
+                
+                if(bedPunchCounter >= 4)&&(doorPunchCounter >= 3) //need this to be checked a lot
+                {
+                    let landEnd = evictionEnd()
+                    landEnd.size = CGSize(width: 400, height: 600)
+                    landEnd.scaleMode = .fill
+                    //removed for now cuz im testing other stuff
+                    scene?.view?.presentScene(landEnd)
+                    
+                }
                 
                 
             }
@@ -294,7 +305,7 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
         if (nodesAtPoint.count > 0)&&(nodesAtPoint[0] == freeman)
         {
             let duckWin = duckEnding()
-            duckWin.size = CGSize(width: 600, height: 200)
+            duckWin.size = CGSize(width: 400, height: 600)
             duckWin.scaleMode = .fill
             scene?.view?.presentScene(duckWin)
           
@@ -308,6 +319,56 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
             brassConvo.scaleMode = .fill
             //removed for now cuz im testing other stuff
            // scene?.view?.presentScene(brassConvo)
+        }
+        if((nodesAtPoint.count > 0)&&(nodesAtPoint[0] == bed)) || ((nodesAtPoint[0] == bed)&&(nodesAtPoint[1] == righty)) || ((nodesAtPoint[0] == bed)&&(nodesAtPoint[1] == lefty))
+        {
+            if(brassEquip == 1)
+            {
+                if(punchPicker == 0)
+                {
+                    
+                    righty.position = (CGPoint(x:0,y:0))
+                    lefty.position = point
+                    lefty.run(leftHook)
+                    punchPicker = 1;
+                    print("lefty")
+                    bedPunchCounter = bedPunchCounter + 1;
+               
+                 
+                }
+                else
+                {
+                    lefty.position = (CGPoint(x: 0, y:0))
+                    righty.position = point
+                    righty.run(rightHook)
+                    punchPicker = 0;
+                 
+                    print("rigfty")
+                    bedPunchCounter = bedPunchCounter + 1;
+                }
+                if(bedPunchCounter == 1)
+                {
+                    bed.texture = bedb1;
+                    
+                }
+                if(bedPunchCounter == 2)
+                {
+                    bed.texture = bedb2;
+                    
+                }
+                if(bedPunchCounter == 3)
+                {
+                    bed.texture = bedb3
+                }
+                if(bedPunchCounter == 4)
+                {
+                    bed.texture = bedb4
+                }
+                
+                
+            }
+            
+            
         }
         if((nodesAtPoint.count > 0)&&(nodesAtPoint[0] == doorOne)) || ((nodesAtPoint[0] == doorOne)&&(nodesAtPoint[1] == righty)) || ((nodesAtPoint[0] == doorOne)&&(nodesAtPoint[1] == lefty))
         {
@@ -340,17 +401,17 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
                 }
                 if(doorPunchCounter == 1)
                 {
-                    doorOne.texture = bedb1;
+                    doorOne.texture = doorb1;
                     
                 }
                 if(doorPunchCounter == 2)
                 {
-                    doorOne.texture = bedb2;
+                    doorOne.texture = doorb2;
                     
                 }
                 if(doorPunchCounter == 3)
                 {
-                    doorOne.texture = bedb3
+                    doorOne.texture = doorb3
                 }
                 
             }
