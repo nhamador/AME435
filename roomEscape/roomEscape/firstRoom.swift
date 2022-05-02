@@ -40,6 +40,13 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
     var brassPunchl2: SKTexture!
     var brassPunchr1: SKTexture!
     var brassPunchr2: SKTexture!
+    var doorb1: SKTexture!
+    var doorb2: SKTexture!
+    var doorb3: SKTexture!
+    var bedb1: SKTexture!
+    var bedb2: SKTexture!
+    var bedb3: SKTexture!
+    var bedb4: SKTexture!
     var empty : SKTexture!
     var brassLeftArray: [SKTexture] = []
     var brassRightArray: [SKTexture] = []
@@ -48,6 +55,8 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
     var rightHook : SKAction!
     var didSetup = 0;
     var punchPicker = 0;
+    var doorPunchCounter = 0;
+    var bedPunchCounter = 0;
     let wait = SKAction.wait(forDuration: 1.2)
     var duckTalk = SKLabelNode(fontNamed: "Papyrus")
     
@@ -160,6 +169,9 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
         doorOne.size = CGSize(width: frame.maxX / 3, height: frame.maxY / 2)
         doorOne.name = "doorOne"
         addChild(doorOne)
+        doorb1 = SKTexture(imageNamed: "doorb1")
+        doorb2 = SKTexture(imageNamed: "doorb2")
+        doorb3 = SKTexture(imageNamed: "doorb3")
         
         bed = SKSpriteNode(texture: SKTexture(imageNamed: "bed"))
         bed.position = CGPoint(x: frame.midX * 3.25, y: frame.midY);
@@ -167,6 +179,10 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
         bed.size = CGSize(width: frame.maxX/2 , height: frame.maxY / 4)
         bed.name = "bed"
         addChild(bed)
+        bedb1 = SKTexture(imageNamed: "bedb1")
+        bedb2 = SKTexture(imageNamed: "bedb2")
+        bedb3 = SKTexture(imageNamed: "bedb3")
+        bedb4 = SKTexture(imageNamed: "bedb4")
         
         brassKnucks = SKSpriteNode(texture: SKTexture(imageNamed: "brassKnucks"))
         brassKnucks.zPosition = 1.0;
@@ -293,7 +309,7 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
             //removed for now cuz im testing other stuff
            // scene?.view?.presentScene(brassConvo)
         }
-        if(nodesAtPoint.count > 0)&&(nodesAtPoint[0] == doorOne)
+        if((nodesAtPoint.count > 0)&&(nodesAtPoint[0] == doorOne)) || ((nodesAtPoint[0] == doorOne)&&(nodesAtPoint[1] == righty)) || ((nodesAtPoint[0] == doorOne)&&(nodesAtPoint[1] == lefty))
         {
             
             
@@ -302,12 +318,14 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
             {
                 if(punchPicker == 0)
                 {
-                   
+                    
                     righty.position = (CGPoint(x:0,y:0))
                     lefty.position = point
                     lefty.run(leftHook)
                     punchPicker = 1;
                     print("lefty")
+                    doorPunchCounter = doorPunchCounter + 1;
+               
                  
                 }
                 else
@@ -318,6 +336,21 @@ class firstRoom: SKScene, SKPhysicsContactDelegate
                     punchPicker = 0;
                  
                     print("rigfty")
+                    doorPunchCounter = doorPunchCounter + 1;
+                }
+                if(doorPunchCounter == 1)
+                {
+                    doorOne.texture = bedb1;
+                    
+                }
+                if(doorPunchCounter == 2)
+                {
+                    doorOne.texture = bedb2;
+                    
+                }
+                if(doorPunchCounter == 3)
+                {
+                    doorOne.texture = bedb3
                 }
                 
             }
